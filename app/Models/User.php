@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Admin\Clinic;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Clinic\Doctor;
+use App\Models\Reception\Receptionist;
 
 class User extends Authenticatable
 {
@@ -18,8 +22,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
+        'type',
     ];
 
     /**
@@ -40,4 +46,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function type()
+    {
+        $type = $this->type;
+        switch ($type) {
+            case 'doctor':
+                return $this->hasOne(Doctor::class);
+                break;
+            case 'receptionist':
+                return $this->hasOne(Receptionist::class);
+                break;
+            case 'clinic':
+                return $this->hasOne(Clinic::class);
+                break;
+
+            default:
+                return null;
+                break;
+        }
+    }
 }
