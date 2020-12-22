@@ -22,7 +22,8 @@ class ClinicFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name'=> $this->faker->name +'-clinic',
+
         ];
     }
 }
