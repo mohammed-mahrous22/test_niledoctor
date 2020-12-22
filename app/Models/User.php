@@ -47,7 +47,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function type()
+    public function gettype()
     {
         $type = $this->type;
         switch ($type) {
@@ -56,9 +56,6 @@ class User extends Authenticatable
                 break;
             case 'receptionist':
                 return $this->hasOne(Receptionist::class);
-                break;
-            case 'clinic':
-                return $this->hasOne(Clinic::class);
                 break;
 
             default:

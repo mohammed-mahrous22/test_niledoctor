@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Clinic;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class DoctorController extends Controller
