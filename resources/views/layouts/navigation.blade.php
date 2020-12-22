@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ Auth::user()->isAdmin ? route('Adminhome') : route('dashboard') }}">
                         <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
                     </a>
                 </div>
@@ -35,14 +35,25 @@
 
                     <x-slot name="content">
                         <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
+                        <form method="POST" action="{{ Auth::user()->isAdmin ? route('Adminlogout'): route('logout') }}">
                             @csrf
+                            @if (Auth::user()->isAdmin )
+                            <x-dropdown-link
 
-                            <x-dropdown-link :href="route('logout')"
+                            :href="route('Adminlogout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('ALogout') }}
+                            </x-dropdown-link>
+                            @else
+                            <x-dropdown-link
+
+                            :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Logout') }}
                             </x-dropdown-link>
+                            @endif
                         </form>
                     </x-slot>
                 </x-dropdown>
