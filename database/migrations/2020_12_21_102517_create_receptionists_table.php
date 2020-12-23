@@ -15,6 +15,10 @@ class CreateReceptionistsTable extends Migration
     {
         Schema::create('receptionists', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string("phone_number");
+            $table->foreignId('user_id');
+            $table->foreignId('Clinic_id');
             $table->timestamps();
         });
     }

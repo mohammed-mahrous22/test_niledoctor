@@ -7,6 +7,9 @@ use Illuminate\Database\Seeder;
 
 class AdminSeeder extends Seeder
 {
+
+    public $admin ;
+
     /**
      * Run the database seeds.
      *
@@ -14,6 +17,6 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-       Admin::factory()->times(1)->create();
+       $this->admin = Admin::factory()->create();
     }
 }

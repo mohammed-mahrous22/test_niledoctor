@@ -2,6 +2,7 @@
 
 namespace App\Models\Adminstration;
 
+use App\Models\Admin\Clinic;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -24,5 +25,17 @@ class Admin extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    protected $casts = [
+
+        //'isAdmin' => "boolean",
+
+    ];
+
+
+    public function Clinics()
+    {
+        return $this->hasMany(Clinic::class);
+    }
 
 }

@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin\Clinic;
+use App\Models\Adminstration\Admin;
 use Illuminate\Database\Seeder;
 
 class ClinicSeeder extends Seeder
@@ -13,6 +15,11 @@ class ClinicSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $admin = AdminSeeder::$admin;
+
+         Clinic::factory()
+            ->count(1)
+            ->for($admin)
+            ->create();
     }
 }

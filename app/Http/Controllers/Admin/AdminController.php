@@ -17,6 +17,8 @@ class AdminController extends Controller
 
     public function index()
     {
-        return view('admin.dashboard');
+        $clinics = auth('admin')->user()->Clinics;
+
+        return view('admin.dashboard')->with('clinics',$clinics);
     }
 }

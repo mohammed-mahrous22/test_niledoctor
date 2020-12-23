@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('type',20);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->foreignId('Clinic_id');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Admin\Clinic;
+use App\Models\Adminstration\Admin;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -59,8 +60,15 @@ class User extends Authenticatable
                 break;
 
             default:
-                return null;
+            abort(403);
                 break;
         }
+
+
+    }
+
+    public function Admin()
+    {
+        return $this->belongsTo(Clinic::class);
     }
 }
