@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Clinic\Doctor;
 use App\Models\Clinic\Patient;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -22,6 +23,7 @@ class CreateAppointmentsTable extends Migration
             $table->string('patient_phone');
             $table->foreignIdFor(Patient::class, 'patient_id')->nullable();
             $table->string('price');
+            $table->foreignIdFor(Doctor::class, 'Doctor_id')->nullable();
             $table->timestamps();
         });
     }

@@ -60,7 +60,7 @@ class User extends Authenticatable
                 break;
 
             default:
-                return null;
+            abort(403);
                 break;
         }
 

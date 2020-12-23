@@ -2,6 +2,7 @@
 
 namespace App\Models\Admin;
 
+use App\Models\Adminstration\Admin;
 use App\Models\Clinic\Doctor;
 use App\Models\Reception\Receptionist;
 use App\Models\User;
@@ -26,6 +27,13 @@ class Clinic extends Model
     {
         return $this->hasMany(Receptionist::class);
     }
+
+        public function Admin()
+        {
+            return $this->belongsTo(Admin::class);
+        }
+
+
     /* public function doctors()
     {
         return $this->hasMany(Doctor::class);
