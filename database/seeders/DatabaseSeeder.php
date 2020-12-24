@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
 
 
         Clinic::factory()
-            ->count(1)
+            ->count(50)
             ->for($admin)
             ->create();
 

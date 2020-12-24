@@ -12,9 +12,11 @@
 
                     @if (session()->has('message'))
                     <div class="alert alert-success">
-                        <p>
+                        <p >
                             {{session('message')}}
                         </p>
+
+
 
                     </div>
                     @endif
