@@ -11,7 +11,16 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     You're logged in as admin
                 </div>
+                @if (session()->has('delete'))
+                    <div class="alert alert-success">
+                        <p  >
+                            {{session('delete')}}
+                        </p>
 
+
+
+                    </div>
+                    @endif
 
             </div>
 
@@ -31,17 +40,24 @@
                         <td class=' ml-3 pl-2 justify-end'>
                         <div class='flex-row flex-auto d-flex justify-content-center justify-self-end'>
                         <a class='bg-blue-400 p-1 text-yellow-50 hover:bg-blue-300 hover:text-yellow-50  mx-2 ' href="{{ route('clinics.show clinic',['Clinic'=> $clinic]) }}"> show </a>
-                            <a class='bg-red-400 p-1 hover:bg-red-300 h text-white mx-2 ' href=""> delete </a>
-                            <a class='bg-green-100 p-1 hover:bg-green-200 mx-2' href=""> edit </a>
+                        <form action="{{ route('clinics.delete clinic',['Clinic'=> $clinic]) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class='bg-red-400 p-1 hover:bg-red-300 h text-white mx-2 ' type="submit"> delete </button>
+                        </form>
+
+
+                            <a class='bg-green-100 p-1 hover:bg-green-200 mx-2' href="{{ route('clinics.update clinic',['Clinic'=> $clinic]) }}"> edit </a>
 
                         </div>
                         </td>
 
 
                         @endforeach
+
                     </tr>
 
-
+                    {{ $clinics->links() }}
                 </table>
                 <a class='bg-blue-600 text-yellow-50 p-1 hover:bg-blue-400 hover:text-yellow-50 mx-2 ' href="{{ route('clinics.create clinic') }}"> new clinic </a>
             </div>

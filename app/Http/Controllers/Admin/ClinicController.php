@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Clinic\StoreClinicRequest;
 use App\Models\Admin\Clinic;
+use GuzzleHttp\Psr7\Message;
 use Illuminate\Http\Request;
 
 class ClinicController extends Controller
@@ -33,13 +34,23 @@ class ClinicController extends Controller
 
         return redirect()->back()->with('message',$message);
    }
-   public function update(Clinic $Clinic)
+   public function update(Clinic $Clinic ,StoreClinicRequest $request)
    {
+
+    $Clinic->name = $request->name;
+    $Clinic->address = $request->address;
+
+    $Clinic->save();
+
+
 
    }
    public function delete(Clinic $Clinic)
    {
+        $Clinic->delete();
+        $Message = 'entry successfully deleted';
 
+    return redirect()->back()-> with('delete',$Message);
    }
    public function show(Clinic $Clinic)
    {

@@ -33,5 +33,6 @@ Route::group(['prefix' => 'admin/clinics','as'=>'clinics.'], function () {
     route::get('/create', [ClinicController::class, 'create'])->name('create clinic');
     route::post('/create', [ClinicController::class, 'store'])->name('store clinic');
     route::get('/{Clinic}', [ClinicController::class, 'show'])->name('show clinic');
-    route::post('/{Clinic}', [ClinicController::class, 'delete'])->name('delete clinic');
+    route::delete('/{Clinic}/delete', [ClinicController::class, 'delete'])->name('delete clinic');
+    route::put('/{Clinic}/update', [ClinicController::class, 'update'])->name('update clinic');
 });
