@@ -23,14 +23,12 @@ class DatabaseSeeder extends Seeder
 
 
         Clinic::factory()
-            ->count(50)
+            ->count(500)
             ->for($admin)
             ->create();
 
-        //$this->call([AdminSeeder::class,
-        //ClinicSeeder::class,
-
-        //]);
+        $this->call([SpecialitySeeder::class,
+        ]);
 
         //User::factory()->times(1)->create();
 

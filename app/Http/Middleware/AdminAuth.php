@@ -18,9 +18,9 @@ class AdminAuth
     public function handle(Request $request, Closure $next)
     {
 
-    if (Auth::guard('admin')->user())
+    if (! Auth::guard('admin')->user())
     {
-        return route('Adminhome');
+        return route('admin.login');
     }
 
         return $next($request);

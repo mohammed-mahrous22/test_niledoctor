@@ -10,6 +10,17 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthenticatedSessionController extends Controller
 {
+
+
+    public function __construct()
+        {
+            $this->middleware('guest')->except('destroy');
+            $this->middleware('guest:admin')->except('destroy');
+
+        }
+
+
+
     /**
      * Display the login view.
      *

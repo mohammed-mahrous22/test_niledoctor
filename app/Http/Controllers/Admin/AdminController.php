@@ -13,6 +13,8 @@ class AdminController extends Controller
     public function __Construct()
     {
         $this->middleware('auth:admin');
+        $this->middleware('auth');
+
     }
 
 

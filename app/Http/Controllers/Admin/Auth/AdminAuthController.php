@@ -10,6 +10,15 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminAuthController extends Controller
 {
+
+
+    public function __construct()
+    {
+
+
+    }
+
+
     public function create()
     {
         return view('admin.auth.login');
