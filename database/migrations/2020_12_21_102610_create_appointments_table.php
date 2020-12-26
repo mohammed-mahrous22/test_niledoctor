@@ -23,7 +23,7 @@ class CreateAppointmentsTable extends Migration
             $table->string('patient_phone');
             $table->foreignIdFor(Patient::class, 'patient_id')->nullable();
             $table->string('price');
-            $table->foreignIdFor(Doctor::class, 'Doctor_id')->nullable();
+            $table->foreignIdFor(Doctor::class, 'Doctor_id');
             $table->timestamps();
         });
     }

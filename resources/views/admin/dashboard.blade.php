@@ -57,7 +57,7 @@
 
                     </tr>
 
-                    {{ $clinics->links() }}
+                    {{ $clinics->onEachSide(1)->links() }}
                 </table>
                 <a class='bg-blue-600 text-yellow-50 p-1 hover:bg-blue-400 hover:text-yellow-50 mx-2 ' href="{{ route('clinics.create clinic') }}"> new clinic </a>
             </div>

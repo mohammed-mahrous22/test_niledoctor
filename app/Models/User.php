@@ -22,7 +22,6 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
         'username',
         'email',
         'password',
@@ -67,7 +66,7 @@ class User extends Authenticatable
 
     }
 
-    public function Admin()
+    public function clinic()
     {
         return $this->belongsTo(Clinic::class);
     }
