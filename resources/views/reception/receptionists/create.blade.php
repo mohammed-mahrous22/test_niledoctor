@@ -23,7 +23,7 @@
                             </p>
                         </div>
                         @endif
-                        <form method="POST" action="{{ route('clinics.doctors.store') }}">
+                        <form method="POST" action="{{ route('clinics.receptionists.store') }}">
                             @csrf
 
                             <!-- Name -->
@@ -52,26 +52,29 @@
                             <div class="mt-4">
                                 <x-label for="clinic" :value="__('clinic')" />
 
+                                @if (Auth::guard('admin')->user())
+
                                 <select class="form-select form-select-sm" name="clinic" id="clinic" required>
                                     <option selected value="{{ old('clinic->id')?? "select a clinic" }} ">{{ old('clinic->name')?? "select a clinic" }}</option>
                                     @foreach ($clinics as $clinic)
+
                                     <option value="{{ $clinic->id }}">{{ $clinic->name }}</option>
+
                                     @endforeach
 
                                 </select>
+                                @else
+                                <select class="form-select form-select-sm" name="clinic" id="clinic" required>
+                                    <option selected value="{{ old('clinic->id')??  $clinic->id  }} ">
+                                        {{ old('clinic->name')?? $clinic->name  }}</option>
+                                </select>
+                                @endif
+
                             </div>
-                            <div class="mt-4">
-                                <x-label for="specialization" :value="__('specialization')" />
-                                <select class="form-select form-select-sm" name="specialization" id="specialization" required>
-                                    <option selected value="{{ old('spec->id')?? "select a specialization" }} ">{{ old('spec->sympol')?? "select a specialization" }}</option>
-                                    @foreach ($specialities as $spec)
-                                    <option value="{{ $spec->id }}">{{ $spec->sympol }}</option>
-                                    @endforeach
 
-                                </select>
 
                                 {{-- <x-input id="clinic" class="block mt-1 w-full" type="text" name="clinic_id" :value="old('clinic_id')" required /> --}}
-                            </div>
+
                             {{-- <div class="mt-4">
                                 <x-input id="clinic" class="block mt-1 w-full" type='hidden' name="user_type" :value="old('clinic_id')" required />
                             </div> --}}
