@@ -22,7 +22,8 @@ class ReceptionistFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name,
+            'phone_number'=> $this->faker->e164PhoneNumber,
         ];
     }
 }

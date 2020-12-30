@@ -66,9 +66,12 @@ class ClinicController extends Controller
    public function show(Clinic $Clinic)
    {
 
-    //return $Clinic;
+    $doctors = $Clinic->doctors()->paginate(5);
+    $receptionists = $Clinic->receptionists()->paginate(5);
 
-         return view('admin.clinic.show',)
-        ->with('clinic',$Clinic);
+
+
+     return view('admin.clinic.show',compact('Clinic','doctors','receptionists'));
+
    }
 }

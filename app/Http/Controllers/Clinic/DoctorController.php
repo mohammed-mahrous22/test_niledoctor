@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Clinic;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Clinic\StoreDoctorRequest;
+use App\Http\Requests\DoctorUpdateRequest;
 use App\Models\Admin\Clinic;
 use App\Models\Clinic\Doctor;
 use App\Models\Clinic\Speciality;
@@ -61,12 +62,23 @@ class DoctorController extends Controller
 
         return back()->with('message' , $succses);
     }
-    public function show()
+    public function show(Doctor $doctor)
     {
         return view('admin.doctors.profile');
     }
-    public function update()
+    public function update(Doctor $Doctor)
+    {
+        return view('admin.doctors.update')->with('doctor',$Doctor);
+    }
+    public function Storeupdate(Doctor $doctor, DoctorUpdateRequest $request)
     {
         return view('admin.doctors.update');
+    }
+    public function destroy(Doctor $doctor)
+    {
+        $doctor->delete();
+        $Message = 'entry successfully deleted';
+
+        return view('admin.doctors.update',$Message);
     }
 }

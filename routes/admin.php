@@ -39,12 +39,13 @@ Route::group(['prefix' => 'admin/clinics','as'=>'clinics.','middleware'=>'auth:a
     route::put('/{Clinic}/update', [ClinicController::class, 'update'])->name('update clinic');
 
     Route::group(['prefix' => 'doctors','as'=>'doctors.'], function () {
-        //route::get('/', [DoctorController::class, 'index']);
+        route::get('/all', [DoctorController::class, 'index']);
         route::get('/create', [DoctorController::class, 'create'])->name('create');
         route::post('/create', [DoctorController::class, 'store'])->name('store');
+        route::get('/update/{Doctor}', [DoctorController::class, 'update'])->name('update');
         route::put('/update/{Doctor}', [DoctorController::class, 'update']);
-        route::delete('/delete/{Doctor}', [DoctorController::class, 'delete']);
-        route::get('/doctor/{Doctor}', [DoctorController::class, 'show']);
+        route::delete('/delete/{Doctor}', [DoctorController::class, 'delete'])->name('delete');
+        route::get('/doctor/{Doctor}', [DoctorController::class, 'show'])->name('show');
         //route::get('/', [DoctorController::class, 'index']);
 
     });
@@ -52,9 +53,10 @@ Route::group(['prefix' => 'admin/clinics','as'=>'clinics.','middleware'=>'auth:a
         //route::get('/', [DoctorController::class, 'index']);
         route::get('/create', [ReceptionistController::class, 'create'])->name('create');
         route::post('/create', [ReceptionistController::class, 'store'])->name('store');
+        route::get('/update/{Receptionist}', [ReceptionistController::class, 'update'])->name('update');
         route::put('/update/{Receptionist}', [ReceptionistController::class, 'update']);
-        route::delete('/delete/{Receptionist}', [ReceptionistController::class, 'delete']);
-        route::get('/doctor/{Receptionist}', [ReceptionistController::class, 'show']);
+        route::delete('/delete/{Receptionist}', [ReceptionistController::class, 'delete'])->name('delete');
+        route::get('/doctor/{Receptionist}', [ReceptionistController::class, 'show'])->name('show');
         //route::get('/', [DoctorController::class, 'index']);
 
     });
