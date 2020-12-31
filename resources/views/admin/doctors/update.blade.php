@@ -23,55 +23,37 @@
                             </p>
                         </div>
                         @endif
-                        <form method="POST" action="{{ route('admin.clinics.doctors.store') }}">
+                        <form method="POST" action="{{ route('admin.clinics.doctors.update',$doctor->id) }}">
                             @csrf
+                            @method('PUT')
 
                             <!-- Name -->
                             <div>
                                 <x-label for="name" :value="__('Name')" />
 
-                                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="$doctor->name " required autofocus />
                             </div>
 
                             <!-- Email Address -->
                             <div class="mt-4">
                                 <x-label for="email" :value="__('Email')" />
 
-                                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value=" $doctor->user->email" required />
                             </div>
                             <div class="mt-4">
                                 <x-label for="username" :value="__('username')" />
 
-                                <x-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required />
+                                <x-input id="username" class="block mt-1 w-full" type="text" name="username" :value=" $doctor->user->username " required />
                             </div>
                             <div class="mt-4">
                                 <x-label for="phone" :value="__('phone')" />
 
-                                <x-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required />
+                                <x-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="  $doctor->phone_number " required />
                             </div>
-                            <div class="mt-4">
-                                <x-label for="clinic" :value="__('clinic')" />
 
-                                <select class="form-select form-select-sm" name="clinic" id="clinic" required>
-                                    <option selected value="{{ old('clinic->id')?? "select a clinic" }} ">{{ old('clinic->name')?? "select a clinic" }}</option>
-                                    @foreach ($clinics as $clinic)
-                                    <option value="{{ $clinic->id }}">{{ $clinic->name }}</option>
-                                    @endforeach
-
-                                </select>
-                            </div>
-                            <div class="mt-4">
-                                <x-label for="specialization" :value="__('specialization')" />
-                                <select class="form-select form-select-sm" name="specialization" id="specialization" required>
-                                    <option selected value="{{ old('spec->id')?? "select a specialization" }} ">{{ old('spec->sympol')?? "select a specialization" }}</option>
-                                    @foreach ($specialities as $spec)
-                                    <option value="{{ $spec->id }}">{{ $spec->sympol }}</option>
-                                    @endforeach
-
-                                </select>
 
                                 {{-- <x-input id="clinic" class="block mt-1 w-full" type="text" name="clinic_id" :value="old('clinic_id')" required /> --}}
-                            </div>
+
                             {{-- <div class="mt-4">
                                 <x-input id="clinic" class="block mt-1 w-full" type='hidden' name="user_type" :value="old('clinic_id')" required />
                             </div> --}}
@@ -82,7 +64,7 @@
                                 <x-input id="password" class="block mt-1 w-full"
                                                 type="password"
                                                 name="password"
-                                                required autocomplete="new-password" />
+                                                 autocomplete="new-password" />
                             </div>
 
                             <!-- Confirm Password -->
@@ -91,7 +73,7 @@
 
                                 <x-input id="password_confirmation" class="block mt-1 w-full"
                                                 type="password"
-                                                name="password_confirmation" required />
+                                                name="password_confirmation"  />
                             </div>
 
                             <div class="flex items-center justify-end mt-4">
@@ -100,7 +82,7 @@
                                 </a> --}}
 
                                 <x-button class="ml-4">
-                                    {{ __('confirm') }}
+                                    {{ __('update') }}
                                 </x-button>
                             </div>
                         </form>

@@ -39,15 +39,15 @@
                         <td class=' ml-3 pl-2'> {{ " $clinic->address " }} </td>
                         <td class=' ml-3 pl-2 justify-end'>
                         <div class='flex-row flex-auto d-flex justify-content-center justify-self-end'>
-                        <a class='bg-blue-400 p-1 text-yellow-50 hover:bg-blue-300 hover:text-yellow-50  mx-2 ' href="{{ route('clinics.show clinic',['Clinic'=> $clinic]) }}"> show </a>
-                        <form action="{{ route('clinics.delete clinic',['Clinic'=> $clinic]) }}" method="POST">
+                        <a class='bg-blue-400 p-1 text-yellow-50 hover:bg-blue-300 hover:text-yellow-50  mx-2 ' href={{ route('admin.clinics.clinic.show',[$clinic->id] ) }}> show </a>
+                        <form action="{{ route('admin.clinics.clinic.destroy',$clinic ) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button class='bg-red-400 p-1 hover:bg-red-300 h text-white mx-2 ' type="submit"> delete </button>
                         </form>
 
 
-                            <a class='bg-green-100 p-1 hover:bg-green-200 mx-2' href="{{ route('clinics.update clinic',['Clinic'=> $clinic]) }}"> edit </a>
+                            <a class='bg-green-100 p-1 hover:bg-green-200 mx-2' href="{{ route('admin.clinics.clinic.edit', $clinic ) }}"> edit </a>
 
                         </div>
                         </td>
@@ -59,7 +59,7 @@
 
                     {{ $clinics->onEachSide(1)->links() }}
                 </table>
-                <a class='bg-blue-600 text-yellow-50 p-1 hover:bg-blue-400 hover:text-yellow-50 mx-2 ' href="{{ route('clinics.create clinic') }}"> new clinic </a>
+                <a class='bg-blue-600 text-yellow-50 p-1 hover:bg-blue-400 hover:text-yellow-50 mx-2 ' href="{{ route('admin.clinics.clinic.create') }}"> new clinic </a>
             </div>
         </div>
 

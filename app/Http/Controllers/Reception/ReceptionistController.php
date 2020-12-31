@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Reception;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateReceptionistRequest;
 use App\Models\Admin\Clinic;
-use App\Models\Clinic\Doctor;
 use App\Models\Reception\Receptionist;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,13 +12,24 @@ use Illuminate\Support\Facades\Hash;
 
 class ReceptionistController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         return view('admin.receptionists.index');
     }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
-       if ($user = auth('admin')->user())
+        if ($user = auth('admin')->user())
          {
 
            $clinics = $user->clinics;
@@ -31,7 +41,14 @@ class ReceptionistController extends Controller
 
         return view('admin.receptionists.create')->with('clinic',$clinic);
     }
-    public function store(CreateReceptionistRequest $request )
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(CreateReceptionistRequest $request)
     {
         $user = new User;
         $user->username = $request->username;
@@ -54,12 +71,52 @@ class ReceptionistController extends Controller
 
         return back()->with('message' , $succses);
     }
-    public function show()
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Reception\Receptionist  $receptionist
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Receptionist $receptionist)
     {
-        return view('admin.doctors.profile');
+        return view('reception.receptionist.profile')->with('receptionist',$receptionist);
     }
-    public function update()
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Reception\Receptionist  $receptionist
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Receptionist $receptionist)
     {
-        return view('admin.doctors.update');
+       return view('reception.receptionist.update')->with('receptionist',$receptionist);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Reception\Receptionist  $receptionist
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Receptionist $receptionist)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Reception\Receptionist  $receptionist
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Receptionist $receptionist)
+    {
+        $receptionist->delete();
+        $Message = 'entry successfully deleted';
+
+    return redirect()->back()-> with('delete',$Message);
     }
 }
