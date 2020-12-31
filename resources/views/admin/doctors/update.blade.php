@@ -23,7 +23,7 @@
                             </p>
                         </div>
                         @endif
-                        <form method="POST" action="{{ route('clinics.doctors.update',$doctor->id) }}">
+                        <form method="POST" action="{{ route('admin.clinics.doctors.update',$doctor->id) }}">
                             @csrf
                             @method('PUT')
 

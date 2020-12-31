@@ -23,7 +23,7 @@
                             </p>
                         </div>
                         @endif
-                        <form method="POST" action="{{ route('clinics.receptionists.store') }}">
+                        <form method="POST" action="{{ route('admin.clinics.receptionists.store') }}">
                             @csrf
 
                             <!-- Name -->

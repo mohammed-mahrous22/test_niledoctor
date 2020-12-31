@@ -14,17 +14,21 @@ use Illuminate\Support\Facades\Hash;
 
 class DoctorController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth:admin');
-    }
-
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         return view('admin.doctors.index');
     }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         $specialities = Speciality::all();
@@ -32,9 +36,18 @@ class DoctorController extends Controller
        $user = auth('admin')->user();
        $clinics = $user->clinics;
 
-        return view('admin.doctors.create')->with('clinics',$clinics)->with('specialities',$specialities);
+        return view('admin.doctors.create')
+            ->with('clinics',$clinics)
+            ->with('specialities',$specialities);
     }
-    public function store(StoreDoctorRequest $request )
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(StoreDoctorRequest $request)
     {
         $user = new User;
         $user->username = $request->username;
@@ -52,28 +65,50 @@ class DoctorController extends Controller
         $doctor->speciality()->associate(Speciality::find($request->specialization));
         $doctor->save();
 
-        if(! $user && $doctor ){
-           $error = 'Doctor could not be created';
-           return redirect()->route('clinics.doctors.create')->with('message' , $error);
-        }
-
         $succses = 'Doctor was created successfully';
-
-
         return back()->with('message' , $succses);
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Clinic\Doctor  $doctor
+     * @return \Illuminate\Http\Response
+     */
     public function show(Doctor $doctor)
     {
-        return view('admin.doctors.profile');
+        return view('admin.doctors.profile')->with('doctor', $doctor);
     }
-    public function update(Doctor $Doctor)
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Clinic\Doctor  $doctor
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Doctor $doctor)
     {
-        return view('admin.doctors.update')->with('doctor',$Doctor);
+        return view('admin.doctors.update')->with('doctor',$doctor);
     }
-    public function Storeupdate(Doctor $doctor, DoctorUpdateRequest $request)
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Clinic\Doctor  $doctor
+     * @return \Illuminate\Http\Response
+     */
+    public function update(DoctorUpdateRequest $request, Doctor $doctor)
     {
         return view('admin.doctors.update');
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Clinic\Doctor  $doctor
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(Doctor $doctor)
     {
         $doctor->delete();
