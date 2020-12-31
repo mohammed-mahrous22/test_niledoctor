@@ -22,8 +22,11 @@ class DoctorFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
-            'phone_number'=> $this->faker->e164PhoneNumber,
+            // 'name' => $this->faker->name,
+            // 'phone_number'=> $this->faker->e164PhoneNumber,
+            // 'speciality_id' => $this->faker->randomElement(['1','2','3']),
+            'name' =>'mohamed',
+            'phone_number'=>'01096842556',
             'speciality_id' => $this->faker->randomElement(['1','2','3']),
         ];
     }

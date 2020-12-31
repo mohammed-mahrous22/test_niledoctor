@@ -29,12 +29,17 @@ class DatabaseSeeder extends Seeder
         ->for($admin)
         ->create();
 
-        for ($i=0; $i <2000 ; $i++) {
+        $user = User::factory()->create();
 
-            $user = User::factory()
-                        ->create();
+        $Clinic = Clinic::find($user->Clinic_id);
 
-            $Clinic = Clinic::find($user->Clinic_id);
+
+        // for ($i=0; $i <2000 ; $i++) {
+
+        //     $user = User::factory()
+        //                 ->create();
+
+        //     $Clinic = Clinic::find($user->Clinic_id);
 
 
             if ($user->type == 'doctor') {
@@ -52,7 +57,7 @@ class DatabaseSeeder extends Seeder
             }
 
 
-        }
+        // }
 
 
 

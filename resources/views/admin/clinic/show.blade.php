@@ -37,15 +37,15 @@
                                         <div class=' ml-3 pl-0 justify-self-end'>
                                             <td >
                                                 <div class='flex-row flex-auto d-flex '>
-                                                    <a class='bg-blue-400 p-1 text-yellow-50 hover:bg-blue-300 hover:text-yellow-50  mx-2 ' href="{{ route('admin.clinics.doctors.show',['doctor'=> $doctor]) }}"> show </a>
-                                                        <form action="{{ route('admin.clinics.doctors.destroy',['doctor'=> $doctor]) }}" method="POST">
+                                                    <a class='bg-blue-400 p-1 text-yellow-50 hover:bg-blue-300 hover:text-yellow-50  mx-2 ' href="{{ route('admin.clinics.doctors.show',[$doctor]) }}"> show </a>
+                                                        <form action="{{ route('admin.clinics.doctors.destroy',[$doctor]) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button class='bg-red-400 p-1 hover:bg-red-300 h text-white mx-2 ' type="submit"> delete </button>
                                                         </form>
 
 
-                                                    <a class='bg-green-100 p-1 hover:bg-green-200 mx-2' href="{{ route('admin.clinics.doctors.edit',['doctor'=> $doctor]) }}"> edit </a>
+                                                    <a class='bg-green-100 p-1 hover:bg-green-200 mx-2' href="{{ route('admin.clinics.doctors.edit',[$doctor]) }}"> edit </a>
 
                                                 </div>
                                             </td>
@@ -61,7 +61,10 @@
 
                                 <a class='bg-blue-600 text-yellow-50 p-1 hover:bg-blue-400 hover:text-yellow-50 mx-2 ' href="{{ route('admin.clinics.doctors.create') }}"> new doctor </a>
                             </table>
-                            {{ $doctors->links() }}
+                            <div class="mx-2 my-2 p-2">
+                                {{ $doctors->links() }}
+                            </div>
+
 
                         </div>
                     </div>
@@ -87,15 +90,15 @@
                                         <div class=' ml-3 pl-0 justify-self-end'>
                                             <td >
                                                 <div class='flex-row flex-auto d-flex '>
-                                                    <a class='bg-blue-400 p-1 text-yellow-50 hover:bg-blue-300 hover:text-yellow-50  mx-2 ' href="{{ route('admin.clinics.receptionists.show',['receptionist'=> $receptionist]) }}"> show </a>
-                                                        <form action="{{ route('admin.clinics.receptionists.destroy',['receptionist'=> $receptionist]) }}" method="POST">
+                                                    <a class='bg-blue-400 p-1 text-yellow-50 hover:bg-blue-300 hover:text-yellow-50  mx-2 ' href="{{ route('admin.clinics.receptionists.show',[$receptionist]) }}"> show </a>
+                                                        <form action="{{ route('admin.clinics.receptionists.destroy',[$receptionist]) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button class='bg-red-400 p-1 hover:bg-red-300 h text-white mx-2 ' type="submit"> delete </button>
                                                         </form>
 
 
-                                                    <a class='bg-green-100 p-1 hover:bg-green-200 mx-2' href="{{ route('admin.clinics.receptionists.edit',['receptionist'=> $receptionist]) }}"> edit </a>
+                                                    <a class='bg-green-100 p-1 hover:bg-green-200 mx-2' href="{{ route('admin.clinics.receptionists.edit',[$receptionist]) }}"> edit </a>
 
                                                 </div>
                                             </td>
@@ -111,7 +114,11 @@
 
                                 <a class='bg-blue-600 text-yellow-50 p-1 hover:bg-blue-400 hover:text-yellow-50 mx-2 ' href="{{ route('admin.clinics.receptionists.create') }}"> new receptionist </a>
                             </table>
-                            {{ $receptionists->links() }}
+
+                            <div class="mx-2 my-2 p-2">
+                                {{ $receptionists->links() }}
+                            </div>
+
 
                         </div>
                     </div>

@@ -24,8 +24,6 @@ class SpecialityFactory extends Factory
 
         $name = $this->faker->unique()->randomElement(['Neurologist','Internist','Orthopedist']);
 
-
-
         $Neu = 'a specialist in the anatomy, functions, and organic disorders of nerves and the nervous system' ;
         $Int = 'a medical specialist in internal diseases' ;
         $Ort = 'who corrects congenital or functional abnormalities of the bones with surgery, casting, and bracing' ;
@@ -43,9 +41,8 @@ class SpecialityFactory extends Factory
                 $disc = $Ort;
                 $sym = 'ORT';
                 break;
-
-
         }
+
         return [
             'name'=>$name,
             'discription'=>$disc,
