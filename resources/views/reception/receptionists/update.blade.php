@@ -23,32 +23,31 @@
                             </p>
                         </div>
                         @endif
-                        <form method="POST" action="{{ route('admin.clinics.doctors.update',[$doctor]) }}">
+                        <form method="POST" action="{{ route('admin.clinics.receptionists.update',[$receptionist]) }}">
                             @csrf
-                            @method('PUT')
 
                             <!-- Name -->
                             <div>
                                 <x-label for="name" :value="__('Name')" />
 
-                                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="$doctor->name " required autofocus />
+                                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value=" old('name', $receptionist->name ) " required autofocus />
                             </div>
 
                             <!-- Email Address -->
                             <div class="mt-4">
                                 <x-label for="email" :value="__('Email')" />
 
-                                <x-input id="email" class="block mt-1 w-full" type="email" name="email" />
+                                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $receptionist->user->email)" required />
                             </div>
                             <div class="mt-4">
                                 <x-label for="username" :value="__('username')" />
 
-                                <x-input id="username" class="block mt-1 w-full" type="text" name="username" :value=" $doctor->user->username "  />
+                                <x-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username', $receptionist->user->username )" required />
                             </div>
                             <div class="mt-4">
                                 <x-label for="phone" :value="__('phone')" />
 
-                                <x-input id="phone" class="block mt-1 w-full" type="text" name="phone" />
+                                <x-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone', $receptionist->phone )" required />
                             </div>
 
 
@@ -64,7 +63,7 @@
                                 <x-input id="password" class="block mt-1 w-full"
                                                 type="password"
                                                 name="password"
-                                                 autocomplete="new-password" />
+                                                required autocomplete="new-password" />
                             </div>
 
                             <!-- Confirm Password -->
@@ -73,7 +72,7 @@
 
                                 <x-input id="password_confirmation" class="block mt-1 w-full"
                                                 type="password"
-                                                name="password_confirmation"  />
+                                                name="password_confirmation" required />
                             </div>
 
                             <div class="flex items-center justify-end mt-4">
@@ -82,7 +81,7 @@
                                 </a> --}}
 
                                 <x-button class="ml-4">
-                                    {{ __('update') }}
+                                    {{ __('confirm') }}
                                 </x-button>
                             </div>
                         </form>

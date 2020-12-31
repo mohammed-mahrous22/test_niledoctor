@@ -9,10 +9,15 @@ class HomeController extends Controller
     public function index () {
 
         if (auth()->user()->type == 'doctor') {
-            return view('doctor.dashboard');
+
+            $user = auth()->user();
+            $doctor = $user->gettype;
+            return view('doctor.dashboard',compact(['user','doctor']));
         }
         if (auth()->user()->type == 'receptionist') {
-            return view('receptionist.dashboard');
+            $user = auth()->user();
+            $receptionist = $user->gettype;
+            return view('receptionist.dashboard',compact(['user','receptionist']));
         }
 
     }

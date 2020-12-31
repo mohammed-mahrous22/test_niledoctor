@@ -1,24 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Admin\Clinic;
-use App\Models\Adminstration\Admin;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class UserController extends Controller
 {
-    public function __Construct()
-    {
-        $this->middleware('auth:admin');
-        $this->middleware('auth');
-
-    }
-
-
-
-
     /**
      * Display a listing of the resource.
      *
@@ -26,10 +14,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $id = auth('admin')->user()->id;
-        $clinics = Clinic::where('admin_id',$id)->paginate(10);
-
-        return view('admin.dashboard')->with('clinics',$clinics);
+        //
     }
 
     /**
@@ -56,21 +41,21 @@ class AdminController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Adminstration\Admin  $admin
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Admin $admin)
+    public function show(User $user)
     {
-        return $admin;
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Adminstration\Admin  $admin
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Admin $admin)
+    public function edit(User $user)
     {
         //
     }
@@ -79,10 +64,10 @@ class AdminController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Adminstration\Admin  $admin
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Admin $admin)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -90,10 +75,10 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Adminstration\Admin  $admin
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Admin $admin)
+    public function destroy(User $user)
     {
         //
     }

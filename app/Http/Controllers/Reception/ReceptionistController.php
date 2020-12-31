@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Reception;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateReceptionistRequest;
+use App\Http\Requests\receptionist\CreateReceptionistRequest;
+use App\Http\Requests\receptionist\UpdateReceptionistRequest;
 use App\Models\Admin\Clinic;
 use App\Models\Reception\Receptionist;
 use App\Models\User;
@@ -91,7 +92,7 @@ class ReceptionistController extends Controller
      */
     public function edit(Receptionist $receptionist)
     {
-       return view('reception.receptionist.update')->with('receptionist',$receptionist);
+       return view('reception.receptionists.update')->with('receptionist',$receptionist);
     }
 
     /**
@@ -101,9 +102,20 @@ class ReceptionistController extends Controller
      * @param  \App\Models\Reception\Receptionist  $receptionist
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Receptionist $receptionist)
+    public function update(UpdateReceptionistRequest $request, Receptionist $receptionist)
     {
-        //
+        $receptionist->update($request->all());
+        if ($request->username) {
+            $receptionist->user->update($request->all('username'));
+        }
+        if ($request->email) {
+            $receptionist->user->update($request->all('email'));
+        }
+        if ($request->password) {
+            $receptionist->user->update($request->all('password'));;
+            }
+        $Message = 'entry updated';
+        return back()->with(['doctor'=>$receptionist,'message'=>$Message]);
     }
 
     /**

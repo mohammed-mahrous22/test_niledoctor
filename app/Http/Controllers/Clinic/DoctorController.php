@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Clinic;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Clinic\StoreDoctorRequest;
-use App\Http\Requests\DoctorUpdateRequest;
+use App\Http\Requests\doctor\DoctorUpdateRequest;
+use App\Http\Requests\doctor\StoreDoctorRequest;
 use App\Models\Admin\Clinic;
 use App\Models\Clinic\Doctor;
 use App\Models\Clinic\Speciality;
@@ -99,8 +99,19 @@ class DoctorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(DoctorUpdateRequest $request, Doctor $doctor)
-    {
-        return view('admin.doctors.update');
+
+    {   $doctor->update($request->all());
+        if ($request->username) {
+            $doctor->user->update($request->all('username'));
+        }
+        if ($request->email) {
+            $doctor->user->update($request->all('email'));
+        }
+        if ($request->password) {
+            $doctor->user->update($request->all('password'));;
+            }
+        $Message = 'entry updated';
+        return back()->with(['doctor'=>$doctor,'message'=>$Message]);
     }
 
     /**
