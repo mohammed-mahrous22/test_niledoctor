@@ -22,7 +22,13 @@ class AppointmentFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'patient_name'=>$this->faker->name,
+            'patient_age'=>$this->faker->numberBetween('5','60'),
+            'patient_address'=>$this->faker->address,
+            'patient_phone'=>$this->faker->e164PhoneNumber,
+            'price'=>'80',
+            'date'=>$this->faker->date($format = 'Y-m-d', $max = 'now'),
+            'time'=>$this->faker->time($format = 'H:i', $max = 'now'),
         ];
     }
 }

@@ -19,6 +19,7 @@ class Receptionist extends Model
     {
         return $this->belongsTo(User::class);
     }
+
     public function clinic()
     {
         return $this->belongsTo(Clinic::class);

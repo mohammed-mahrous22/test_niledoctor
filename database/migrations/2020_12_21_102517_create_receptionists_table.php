@@ -18,7 +18,7 @@ class CreateReceptionistsTable extends Migration
             $table->string('name');
             $table->string("phone_number");
             $table->foreignId('user_id');
-            $table->foreignId('Clinic_id');
+            $table->foreignId('clinic_id');
             $table->timestamps();
         });
     }

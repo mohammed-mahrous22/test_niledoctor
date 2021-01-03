@@ -3,6 +3,7 @@
 namespace App\Models\Clinic;
 
 use App\Models\Admin\Clinic;
+use App\Models\Reception\Appointment;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -28,6 +29,11 @@ class Doctor extends Model
     public function speciality()
     {
         return $this->belongsTo(Speciality::class);
+    }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
     }
 
 

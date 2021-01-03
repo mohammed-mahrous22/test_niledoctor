@@ -14,7 +14,7 @@ class PatientController extends Controller
      */
     public function index()
     {
-        //
+        return view('clinic.doctor.patient.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class PatientController extends Controller
      */
     public function create()
     {
-        //
+        return view('clinic.doctor.patient.create');
     }
 
     /**
@@ -46,7 +46,7 @@ class PatientController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('clinic.doctor.patient.show');
     }
 
     /**
@@ -57,7 +57,7 @@ class PatientController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('clinic.doctor.patient.edit');
     }
 
     /**
