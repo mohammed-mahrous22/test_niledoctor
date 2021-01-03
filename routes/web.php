@@ -23,3 +23,4 @@ Route::get('user/{name}/profile',[UserController::class,'show'])->name('user.pro
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';
 require __DIR__.'/clinic.php';
+require __DIR__.'/reception.php';

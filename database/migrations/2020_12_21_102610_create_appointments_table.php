@@ -21,8 +21,10 @@ class CreateAppointmentsTable extends Migration
             $table->string('patient_age');
             $table->string('patient_address');
             $table->string('patient_phone');
-            $table->foreignIdFor(Patient::class, 'patient_id')->nullable();
             $table->string('price');
+            $table->foreignIdFor(Patient::class, 'patient_id')->nullable();
+            $table->date('date');
+            $table->time('time');
             $table->foreignIdFor(Doctor::class, 'Doctor_id');
             $table->timestamps();
         });
