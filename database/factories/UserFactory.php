@@ -24,12 +24,12 @@ class UserFactory extends Factory
     {
         return [
             // 'username'=>$this->faker->unique()->userName,
-            'username'=>"xxspider4",
+            'username'=>$this->faker->unique()->randomElement(['xxspider4','xxspider5']),
             // 'email' => $this->faker->unique()->safeEmail,
-            'email' =>"xxspider44@gmail.com",
+            'email' =>$this->faker->unique()->randomElement(['xxspider44@gmail.com','xxspider45@gmail.com']),
             // 'type'=>$this->faker->randomElement(['doctor','receptionist']),
-            'type'=>"doctor",
-            'Clinic_id'=>$this->faker->numberBetween('1','100'),
+            'type'=>$this->faker->unique()->randomElement(['doctor','receptionist']),
+            'Clinic_id'=>'1',
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),

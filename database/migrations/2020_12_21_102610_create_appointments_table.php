@@ -22,6 +22,8 @@ class CreateAppointmentsTable extends Migration
             $table->string('patient_address');
             $table->string('patient_phone');
             $table->string('price');
+            $table->string('status')->default('pending');
+            $table->date('delayed_to')->nullable();
             $table->foreignIdFor(Patient::class, 'patient_id')->nullable();
             $table->date('date');
             $table->time('time');

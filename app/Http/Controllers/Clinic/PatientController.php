@@ -14,7 +14,7 @@ class PatientController extends Controller
      */
     public function index()
     {
-        //
+        return view('clinic.doctor.patient.index');
     }
 
     /**
@@ -22,10 +22,10 @@ class PatientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+    // public function create()
+    // {
+
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -46,7 +46,7 @@ class PatientController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('clinic.doctor.patient.show');
     }
 
     /**
@@ -57,7 +57,7 @@ class PatientController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('clinic.doctor.patient.edit');
     }
 
     /**
