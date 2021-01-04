@@ -22,10 +22,10 @@ class PatientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('clinic.doctor.patient.create');
-    }
+    // public function create()
+    // {
+
+    // }
 
     /**
      * Store a newly created resource in storage.

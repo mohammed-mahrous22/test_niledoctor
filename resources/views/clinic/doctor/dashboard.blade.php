@@ -46,7 +46,7 @@
                                     <div class=''>
                                         <td >
                                             <div class='flex-col flex '>
-                                                <form action="{{ route('appointment.postpone',[$appointment])}}" method= "POST">
+                                                <form action="{{ route('appointment.postpone',$appointment)}}" method= "POST">
                                                     <div class="flex flex-row  ">
                                                         <button class=' p-0 m-2 bg-green-400  hover:bg-green-600 hover:text-gray-100 ' type="submit" > postpone </button>
                                                         <div class="flex flex-col ">
@@ -56,8 +56,8 @@
                                                     </div>
                                                 </form>
                                                 <div class="flex flex-row">
-                                                    <a class='bg-blue-600 p-3 m-2 text-yellow-50 hover:bg-blue-800 hover:text-yellow-50  ' href="{{ route('appointments.show',[$appointment]) }}"> start </a>
-                                                    <form action="{{ route('appointment.cancel',[$appointment]) }}" method="POST">
+                                                    <a class='bg-blue-600 p-3 m-2 text-yellow-50 hover:bg-blue-800 hover:text-yellow-50  ' href="{{ route('appointment.start',$appointment) }}"> start </a>
+                                                    <form action="{{ route('appointment.cancel',$appointment) }}" method="POST">
                                                         @csrf
                                                         <button class=' p-3 m-2 bg-red-600  hover:bg-red-900  text-white ' type="submit"> cancel </button>
                                                     </form>

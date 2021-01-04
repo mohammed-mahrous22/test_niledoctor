@@ -11,7 +11,7 @@ class Appointment extends Model
 {
     use HasFactory;
 
-    public $fillable =[
+    protected $fillable =[
         'patient_name',
         'patient_age',
         'patient_address',

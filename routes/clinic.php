@@ -15,15 +15,15 @@ Route::resource('Services', ServiceController::class);
 Route::resource('Speciality',SpecialityController::class);
 
 Route::group(['as' => 'appointment.','Middleware'=> 'auth'], function () {
-    Route::get('appointments/start/{$Appointment}',[ActionController::class,'MakeAppointment'])
+    Route::get('appointments/start/{appointment}',[ActionController::class,'MakeAppointment'])
     ->middleware('auth')
     ->name('start');
 
-Route::post('appointments/postpone/{$Appointment}',[ActionController::class,'PostopneAppointment'])
+Route::post('appointments/postpone/{appointment}',[ActionController::class,'PostopneAppointment'])
     ->middleware('auth')
     ->name('postpone');
 
-Route::post('appointments/cancel/{$Appointment}',[ActionController::class,'CancelAppointment'])
+Route::post('appointments/cancel/{appointment}',[ActionController::class,'CancelAppointment'])
     ->middleware('auth')
     ->name('cancel');
 

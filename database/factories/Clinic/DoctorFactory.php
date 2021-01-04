@@ -25,7 +25,7 @@ class DoctorFactory extends Factory
             // 'name' => $this->faker->name,
             // 'phone_number'=> $this->faker->e164PhoneNumber,
             // 'speciality_id' => $this->faker->randomElement(['1','2','3']),
-            'name' =>'mohamed',
+            'name' =>'doctor',
             'phone_number'=>'01096842556',
             'speciality_id' => $this->faker->randomElement(['1','2','3']),
         ];
