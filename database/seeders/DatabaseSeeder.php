@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Admin\Clinic;
 use App\Models\Adminstration\Admin;
 use App\Models\Clinic\Doctor;
+use App\Models\Reception\Appointment;
 use App\Models\Reception\Receptionist;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -29,9 +30,7 @@ class DatabaseSeeder extends Seeder
         ->for($admin)
         ->create();
 
-        $user = User::factory()->create();
 
-        $Clinic = Clinic::find($user->Clinic_id);
 
 
         // for ($i=0; $i <2000 ; $i++) {
@@ -41,12 +40,18 @@ class DatabaseSeeder extends Seeder
 
         //     $Clinic = Clinic::find($user->Clinic_id);
 
+            for ($i=0; $i <2 ; $i++) {
+                $user = User::factory()->create();
+
+                $Clinic = Clinic::find($user->Clinic_id);
 
             if ($user->type == 'doctor') {
-                Doctor::factory()
+               $doctor = Doctor::factory()
                     ->for($Clinic,'clinic')
                     ->for($user,'user')
                     ->create();
+
+
             }
 
             if ($user->type == 'receptionist') {
@@ -55,7 +60,11 @@ class DatabaseSeeder extends Seeder
                     ->for($user,'user')
                     ->create();
             }
-
+        }
+        Appointment::factory()
+                    ->count(30)
+                    ->for($doctor,'doctor')
+                    ->create();
 
         // }
 
