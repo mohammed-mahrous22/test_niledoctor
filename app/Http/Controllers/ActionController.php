@@ -17,11 +17,16 @@ class ActionController extends Controller
             ->where('address',$appointment->patient_address)->first();
 
         if ($patient) {
-            return $patient;
+
+            $appointment->patient()->associate($patient);
+            return view('clinic.doctor.patient.create')
+                ->with('patient',$patient)
+                ->with('appointment',$appointment);
         }
 
-        return $appointment;
-        //return view('clinic.doctor.patient.create');
+        return view('clinic.doctor.patient.create')
+                ->with('appointment',$appointment);
+
     }
     public function PostopneAppointment(Appointment $appointment)
     {
