@@ -13,10 +13,10 @@ class ActionController extends Controller
 
 
        $patient = Patient::where('name',$appointment->patient_name)
-            ->where('age',$appointment->patient_age)
-            ->where('address',$appointment->patient_address)->first();
+            ->where('phone',$appointment->patient_phone)
+            ->first();
 
-        if ($patient) {
+        if ($patient !== null ) {
 
             $appointment->patient()->associate($patient);
             return view('clinic.doctor.patient.create')
