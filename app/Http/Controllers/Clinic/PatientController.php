@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Clinic;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Patient\CreatePatientRequest;
+use App\Models\Clinic\Doctor;
+use App\Models\Clinic\Patient;
+use App\Models\Reception\Appointment;
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
@@ -33,9 +37,33 @@ class PatientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreatePatientRequest $request)
     {
-        //
+
+        $doctor = Doctor::find($request->user()->gettype->id);
+        $data = [];
+        foreach ($request->validated() as $key => $value) {
+            if ($value !== null) {
+                $data[$key] = trim(strip_tags($value));
+            }
+        }
+        $appointment = Appointment::find($data['appoint_id']);
+        $patient = Patient::where('name',$data['name'])->where('phone',$data['phone'])->first() ?? new patient;
+        $patient->name=$data['name'];
+        $patient->age=$data['age'];
+        $patient->phone=$data['phone'];
+        $patient->address=$data['address'];
+        $patient->weight=$data['weight'] ?? $patient->weight;
+        $patient->BP=$data['BP'] ?? $patient->BP;
+        $patient->treatment=$data['treatment'] ?? $patient->treatment ;
+        $patient->diagnoses=$data['diagnoses'] ?? $patient->diagnoses ;
+        $patient->medical_history=$data['medical_history'] ?? $patient->medical_history ;
+        $patient->Doctor()->associate($doctor);
+        $patient->save();
+        $appointment->patient()->associate($patient);
+        $appointment->save();
+
+        return $patient->appointments;
     }
 
     /**
@@ -44,7 +72,7 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Patient $patient)
     {
         return view('clinic.doctor.patient.show');
     }
@@ -55,7 +83,7 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Patient $patient)
     {
         return view('clinic.doctor.patient.edit');
     }
@@ -67,7 +95,7 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Patient $patient)
     {
         //
     }
@@ -78,7 +106,7 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Patient $patient)
     {
         //
     }

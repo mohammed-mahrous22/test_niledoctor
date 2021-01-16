@@ -14,41 +14,41 @@
 
                 <div class="felx flex-row">
                     <div class="container mx-auto pl-3 bg-gray-100 rounded-md p-3  ">
-                        <table class='content-between justify-items-auto flex flex-col '>
-                            <tr class="flex flex-row justify-between border-solid border border-opacity-20 border-black my-auto py-2" >
+                        <table class='content-between border-solid border border-opacity-20 border-black justify-items-auto flex flex-col'>
+                            <tr class="flex flex-row flex-wrap justify-between  my-auto py-2" >
                                 <th scope="col" class='px-3 mx-3 pr-1' >name</th>
-                                <th scope="col" class="mx-3 pr-10" >date</th>
-                                <th scope="col" class="mx-3 pr-10" >time</th>
-                                <th scope="col" class="mx-3 pr-10" >status</th>
-                                <th scope="col" class="mx-3 pr-10" >delayed to</th>
+                                <th scope="col" class='mx-3 pr-10' >date</th>
+                                <th scope="col" class='mx-3 pr-10' >time</th>
+                                <th scope="col" class='mx-3 pr-10' >status</th>
+                                <th scope="col" class='mx-3 pr-10' >delayed to</th>
                                 <th scope="col" class="mx-3 pr-5" >action</th>
 
                             </tr>
                             @foreach ($appointments as $appointment)
-                            <tr class="flex border-solid border justify-between align-bottom border-opacity-20 border-black my-auto py-2" >
+                            <tr class="flex flex-wrap sm:flex-col lg:flex-row justify-between align-bottom my-auto py-2" >
 
-                                <div class='flex-row ' >
+                                <div class='flex flex-row sm:flex-col ' >
                                     <div class= >
                                         <td class=''>  {{$appointment->patient_name}} </td>
                                     </div>
                                     <div class=''>
-                                        <td class='px-3 mx-3'>  {{$appointment->date}} </td>
+                                        <td class='px-3 mx-3 '>  {{$appointment->date}} </td>
                                     </div>
                                     <div class=''>
-                                        <td class='px-3 mx-3'>  {{$appointment->time}} </td>
+                                        <td class='px-3 mx-3 '>  {{$appointment->time}} </td>
                                     </div>
                                     <div class=''>
-                                        <td class='px-3 mx-3'>  {{$appointment->status}} </td>
+                                        <td class='px-3 mx-3 '>  {{$appointment->status}} </td>
                                     </div>
                                     <div class=''>
-                                        <td class='px-3 mx-3'>  {{  $appointment->delayed_to ?? "not delayed"  }} </td>
+                                        <td class='px-3 mx-3 '>  {{  $appointment->delayed_to ?? "not delayed"  }} </td>
                                     </div>
                                     <div class=''>
                                         <td >
                                             <div class='flex-col flex '>
-                                                <form action="{{ route('appointment.postpone',$appointment)}}" method= "POST">
+                                                <form action="{{ route('appointment.delay',$appointment)}}" method= "POST">
                                                     <div class="flex flex-row  ">
-                                                        <button class=' p-0 m-2 bg-green-400  hover:bg-green-600 hover:text-gray-100 ' type="submit" > postpone </button>
+                                                        <button class=' px-2 m-2 bg-green-400 text-yellow-50 hover:bg-green-600 hover:text-gray-100 ' type="submit" > delay </button>
                                                         <div class="flex flex-col ">
                                                             <small class="p-0 ml-4" >days</small>
                                                            <input id="days" class="inline w-16 h-8 p-2  m-2" type="number" name="days" required />

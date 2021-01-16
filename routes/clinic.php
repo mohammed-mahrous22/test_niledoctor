@@ -19,9 +19,9 @@ Route::group(['as' => 'appointment.','Middleware'=> 'auth'], function () {
     ->middleware('auth')
     ->name('start');
 
-Route::post('appointments/postpone/{appointment}',[ActionController::class,'PostopneAppointment'])
+Route::post('appointments/delay/{appointment}',[ActionController::class,'PostopneAppointment'])
     ->middleware('auth')
-    ->name('postpone');
+    ->name('delay');
 
 Route::post('appointments/cancel/{appointment}',[ActionController::class,'CancelAppointment'])
     ->middleware('auth')

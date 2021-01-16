@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Reception;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\appointment\CreateAppointmentRequest;
 use App\Http\Requests\appointment\UpdateAppointmentRequest;
+use App\Models\Clinic\Patient;
 use App\Models\Clinic\Speciality;
 use App\Models\Reception\Appointment;
 use Illuminate\Http\Request;
@@ -47,10 +48,22 @@ class AppointmentController extends Controller
      */
     public function store(CreateAppointmentRequest $request)
     {
+        $data =[];
+        foreach ($request->validated() as $key => $value) {
+            $data[$key] = trim(strip_tags($value));
+        }
 
-       Appointment::create($request->validated());
+      $appointment = Appointment::create($data);
+      $patient = Patient::where('name',$appointment->patient_name)
+                         ->where('phone',$appointment->patient_phone)
+                         ->first();
+        if ($patient !== null) {
+            $appointment->patient()->associate($patient);
+            $appointment->save();
+        }
+
         $message = 'Appointment created';
-        return redirect('reception.appointments.index')
+        return back()
             ->with('success',$message);
     }
 
@@ -94,7 +107,7 @@ class AppointmentController extends Controller
         $data = [];
         foreach ($request->validated() as $key => $value) {
             if ($value !== null) {
-                $data[$key] = $value;
+                $data[$key] = trim(strip_tags($value));
             }
             $appointment->update($data);
         }
